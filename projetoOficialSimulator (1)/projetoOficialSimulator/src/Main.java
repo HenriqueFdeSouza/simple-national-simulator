@@ -1,6 +1,4 @@
-import com.github.henriquefdesouza.simulator.Annexs;
-import com.github.henriquefdesouza.simulator.PanelOfAnnexes;
-import com.github.henriquefdesouza.simulator.annexone.AnnexOne;
+import com.github.henriquefdesouza.simulator.panel.PanelOfAnnexes;
 
 import java.text.ParseException;
 

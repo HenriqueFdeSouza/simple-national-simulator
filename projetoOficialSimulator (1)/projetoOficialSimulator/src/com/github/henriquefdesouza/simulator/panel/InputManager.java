@@ -1,4 +1,4 @@
-package com.github.henriquefdesouza.simulator;
+package com.github.henriquefdesouza.simulator.panel;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -22,9 +22,21 @@ public class InputManager {
         return sc.nextLine();
     }
 
+    public static String questionPisAndCofins() {
+        System.out.print("Tem Receita com Pis e Cofins monofásico? (Sim/Não): ");
+        return sc.nextLine();
+    }
+
+    public static double pisCofins() {
+        if (questionPisAndCofins().equalsIgnoreCase("sim")) {
+            return readInput("Por favor, inclua o valor correspondente ao Pis e Cofins monofásico");
+        }
+        return 0;
+    }
+
     public static double icmsSt() {
         if (questionIcms().equalsIgnoreCase("sim")) {
-            return readInput("Por favor, insira o valor correspondente ICMS ST");
+            return readInput("Por favor, inclua o valor correspondente ao ICMS Substituição Tributária");
         }
         return 0;
     }

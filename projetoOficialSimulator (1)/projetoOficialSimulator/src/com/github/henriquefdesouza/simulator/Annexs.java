@@ -1,5 +1,7 @@
 package com.github.henriquefdesouza.simulator;
 
+import com.github.henriquefdesouza.simulator.panel.InputManager;
+
 import java.util.ArrayList;
 import java.util.List;
 

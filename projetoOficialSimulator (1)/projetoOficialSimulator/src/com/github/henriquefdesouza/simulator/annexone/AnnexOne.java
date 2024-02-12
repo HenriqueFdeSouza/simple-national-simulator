@@ -1,14 +1,15 @@
 package com.github.henriquefdesouza.simulator.annexone;
 
 import com.github.henriquefdesouza.simulator.Annexs;
-import com.github.henriquefdesouza.simulator.Icms;
-import com.github.henriquefdesouza.simulator.InputManager;
+import com.github.henriquefdesouza.simulator.piscofisicms.AllTaxes;
+import com.github.henriquefdesouza.simulator.panel.InputManager;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class AnnexOne implements Annexs {
     private double icmsSt;
+    private double pisCofins;
 
     public List<Double> aliquot() {
         return Arrays.asList(0.04, 0.073, 0.095, 0.107, 0.143, 0.19);
@@ -33,22 +34,27 @@ public class AnnexOne implements Annexs {
         icmsSt += InputManager.icmsSt();
     }
 
+    public void getPisCofins() {
+        pisCofins += InputManager.pisCofins();
+    }
+
     @Override
     public double getRevenue() {
-        return revenue - icmsSt;
+        return revenue - icmsSt - pisCofins;
     }
 
     @Override
     public void printFullData() {
         getIcmsSt();
-        if (icmsSt == 0) {
-            printAll();
-        } else {
-            Icms icms = new Icms(this, icmsSt);
-            double valueGuide = calculatorValueGuide() + icms.valueIcmsSt();
+        getPisCofins();
+        if (icmsSt != 0 || pisCofins != 0) {
+            AllTaxes allTaxes = new AllTaxes(this, icmsSt, pisCofins);
+            double valueGuide = calculatorValueGuide() + allTaxes.valueIcmsSt() + allTaxes.valuePisCofins();
             printGuide(valueGuide);
             printAliquot(calculatorAliquot());
-            icms.printTaxesIcms();
+            allTaxes.printTaxes();
+        } else {
+            printAll();
         }
     }
 }

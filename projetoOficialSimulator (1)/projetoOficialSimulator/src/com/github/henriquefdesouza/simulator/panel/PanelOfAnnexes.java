@@ -1,8 +1,7 @@
-package com.github.henriquefdesouza.simulator;
+package com.github.henriquefdesouza.simulator.panel;
 
-import com.github.henriquefdesouza.simulator.annexfour.AnnexFour;
+import com.github.henriquefdesouza.simulator.Annexs;
 import com.github.henriquefdesouza.simulator.annexone.AnnexOne;
-import com.github.henriquefdesouza.simulator.annexthree.AnnexThree;
 import com.github.henriquefdesouza.simulator.annextwo.AnnexTwo;
 
 
@@ -27,7 +26,7 @@ public class PanelOfAnnexes {
     }
 
     private Annexs annexs(int option) {
-        List<Annexs> listAnnex = Arrays.asList(new AnnexOne(), new AnnexTwo(), new AnnexThree(), new AnnexFour());
+        List<Annexs> listAnnex = Arrays.asList(new AnnexOne(), new AnnexTwo());
         return listAnnex.get(option - 1);
     }
 
