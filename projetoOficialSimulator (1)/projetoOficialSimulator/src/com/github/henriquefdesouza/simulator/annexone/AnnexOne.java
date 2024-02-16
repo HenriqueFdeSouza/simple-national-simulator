@@ -1,16 +1,13 @@
 package com.github.henriquefdesouza.simulator.annexone;
 
 import com.github.henriquefdesouza.simulator.Annexs;
-import com.github.henriquefdesouza.simulator.piscofisicms.AllTaxes;
 import com.github.henriquefdesouza.simulator.panel.InputManager;
+import com.github.henriquefdesouza.simulator.piscofisicms.AllTaxes;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AnnexOne implements Annexs {
-    private double icmsSt;
-    private double pisCofins;
-
+public class AnnexOne extends AllTaxes implements Annexs {
     public List<Double> aliquot() {
         return Arrays.asList(0.04, 0.073, 0.095, 0.107, 0.143, 0.19);
     }
@@ -20,22 +17,14 @@ public class AnnexOne implements Annexs {
     }
 
     public List<Double> taxes(int track) {
-        if (track <= 2) return Arrays.asList(0.415, 0.035, 0.34, 0.055, 0.1274, 0.0276);
-        if (track <= 5) return Arrays.asList(0.42, 0.035, 0.335, 0.055, 0.1274, 0.0276);
-        return Arrays.asList(0.421, 0.10, 0.135, 0.2827, 0.0613);
+        if (track <= 2) return Arrays.asList(0.34, 0.1274, 0.0276, 0.415, 0.035, 0.055);
+        if (track <= 5) return Arrays.asList(0.335, 0.1274, 0.0276, 0.42, 0.035, 0.055);
+        return Arrays.asList(0.2827, 0.0613, 0.421, 0.10, 0.135);
     }
 
     @Override
     public List<String> namesTaxes() {
-        return Arrays.asList("CPP: ", "CSLL: ", "ICMS: ", "IRPJ: ", "COFINS: ", "PIS: ");
-    }
-
-    public void getIcmsSt() {
-        icmsSt += InputManager.icmsSt();
-    }
-
-    public void getPisCofins() {
-        pisCofins += InputManager.pisCofins();
+        return Arrays.asList("ICMS: ", "COFINS: ", "PIS: ", "CPP: ", "CSLL: ", "IRPJ: ");
     }
 
     @Override
@@ -45,16 +34,9 @@ public class AnnexOne implements Annexs {
 
     @Override
     public void printFullData() {
-        getIcmsSt();
-        getPisCofins();
-        if (icmsSt != 0 || pisCofins != 0) {
-            AllTaxes allTaxes = new AllTaxes(this, icmsSt, pisCofins);
-            double valueGuide = calculatorValueGuide() + allTaxes.valueIcmsSt() + allTaxes.valuePisCofins();
-            printGuide(valueGuide);
-            printAliquot(calculatorAliquot());
-            allTaxes.printTaxes();
-        } else {
-            printAll();
-        }
+        icmsSt += InputManager.icmsSt();
+        pisCofins += InputManager.pisCofins();
+        printGuideAndAliquot(sumTaxes(), calculatorAliquot());
+        printTaxes();
     }
 }

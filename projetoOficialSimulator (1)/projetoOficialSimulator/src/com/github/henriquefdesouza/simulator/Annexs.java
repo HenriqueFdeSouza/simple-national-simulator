@@ -22,7 +22,6 @@ public interface Annexs {
 
     void printFullData();
 
-
     default int checkRange() {
         if (valueRbt12 <= 0) return 0;
         if (valueRbt12 <= 180_000) return 1;
@@ -51,25 +50,24 @@ public interface Annexs {
         return list;
     }
 
-    default void printGuide(double valueGuide) {
-        System.out.println("Valor da guia: " + valueGuide);
+    default void printGuideAndAliquot(double guide, double aliquot) {
+        System.out.printf("Valor da guia: R$ %.2f%n", guide);
+        System.out.printf("Porcentagem aliquota: %.3f %%%n", aliquot);
     }
 
-    default void printAliquot(double valueAliquot) {
-        System.out.printf("Porcentagem aliquota: %.3f %%%n", valueAliquot);
+    default double aliquotIcms() {
+        return calculatorAliquot() * taxes(checkRange()).get(0);
     }
 
-    default void printTaxes() {
-        for (int i = 0; i < namesTaxes().size(); i++) {
-            System.out.printf("(%.2f %%) %s%.2f%n", (calculatorAliquot() * taxes(checkRange()).get(i)), namesTaxes().get(i),
-                    calculationTaxes(taxes(checkRange()), revenue).get(i));
-        }
+    default double aliquotIss() {
+        return calculatorAliquot() * taxes(checkRange()).get(0);
     }
 
-    default void printAll() {
-        printGuide(calculatorValueGuide());
-        printAliquot(calculatorAliquot());
-        printTaxes();
+    default double aliquotCofins() {
+        return (calculatorAliquot() * taxes(checkRange()).get(1));
     }
 
+    default double aliquotPis() {
+        return (calculatorAliquot() * taxes(checkRange()).get(2));
+    }
 }

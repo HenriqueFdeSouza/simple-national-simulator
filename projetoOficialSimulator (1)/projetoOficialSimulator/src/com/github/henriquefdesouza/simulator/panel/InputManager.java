@@ -17,6 +17,10 @@ public class InputManager {
         return readInput("Receita");
     }
 
+    public static double questionFactorR() {
+        return readInput("Digite o somatório da folha de pagamento dos últimos 12 meses");
+    }
+
     public static String questionIcms() {
         System.out.print("Tem Receita com ICMS retido por Substituição ICMS? (Sim/Não): ");
         return sc.nextLine();
@@ -25,6 +29,18 @@ public class InputManager {
     public static String questionPisAndCofins() {
         System.out.print("Tem Receita com Pis e Cofins monofásico? (Sim/Não): ");
         return sc.nextLine();
+    }
+
+    public static String questionIss() {
+        System.out.print("Tem Receita com ISS retido? (Sim/Não): ");
+        return sc.nextLine();
+    }
+
+    public static double iss() {
+        if (questionIss().equalsIgnoreCase("sim")) {
+            return readInput("Por favor, inclua o valor correspondente ao ISS Retido");
+        }
+        return 0;
     }
 
     public static double pisCofins() {
@@ -50,5 +66,4 @@ public class InputManager {
             throw new RuntimeException("Numero digitado está incorreto!");
         }
     }
-
 }
