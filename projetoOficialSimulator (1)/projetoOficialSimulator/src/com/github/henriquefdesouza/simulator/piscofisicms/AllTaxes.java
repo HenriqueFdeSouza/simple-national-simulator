@@ -11,6 +11,11 @@ public abstract class AllTaxes implements Annexs {
     public double iss;
     public double payrollSum;
 
+    @Override
+    public double getRevenue() {
+        return revenue - icmsSt - pisCofins - iss;
+    }
+
     public Double recalculateTaxePisCofins(int i) {
         List<Double> listTaxes = taxes(checkRange());
         listTaxes.set(1, 0.0);
@@ -36,27 +41,13 @@ public abstract class AllTaxes implements Annexs {
 
     public void printTaxes() {
         List<String> listTaxes = namesTaxes();
+        double guide = 0;
         for (int i = 0; i < listTaxes.size(); i++) {
             double sumTaxes = recalculateTaxeIcms(i) + recalculateTaxePisCofins(i) + fullTaxes(i) + recalculateTaxeIss(i);
             System.out.printf("(%.2f %%) %s%.2f%n", (calculatorAliquot() * taxes(checkRange()).get(i)), listTaxes.get(i), sumTaxes);
+            guide += sumTaxes;
         }
+        System.out.printf("Valor da guia: R$ %.2f%n", guide);
+        System.out.printf("Porcentagem aliquota: %.3f %%%n", calculatorAliquot());
     }
-
-    public double sumTaxes() {
-        return calculatorValueGuide() + valueIcmsSt() + valuePisCofins() + valueIss();
-    }
-
-    public double valueIss() {
-        return (calculatorAliquot() - aliquotIss()) / 100 * iss;
-    }
-
-    public double valueIcmsSt() {
-        return (calculatorAliquot() - aliquotIcms()) / 100 * icmsSt;
-    }
-
-    public double valuePisCofins() {
-        return (calculatorAliquot() - (aliquotCofins() + aliquotPis())) / 100 * pisCofins;
-    }
-
-
 }

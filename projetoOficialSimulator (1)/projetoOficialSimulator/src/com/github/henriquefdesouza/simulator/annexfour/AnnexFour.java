@@ -17,29 +17,22 @@ public class AnnexFour extends AllTaxes implements Annexs {
         return Arrays.asList(0.0, 8100.0, 12420.0, 39780.0, 183780.0, 828000.0);
     }
 
-    public List<Double> taxes(int track) {
-        if (track == 1) return Arrays.asList(0.445, 0.152, 0.1880, 0.1767, 0.0383);
-        if (track == 2) return Arrays.asList(0.40, 0.152, 0.1980, 0.2055, 0.0445);
-        if (track == 3) return Arrays.asList(0.40, 0.152, 0.2080, 0.1973, 0.0427);
-        if (track == 4) return Arrays.asList(0.40, 0.1920, 0.1780, 0.1890, 0.0410);
-        if (track == 5) return Arrays.asList(0.40, 0.1920, 0.1880, 0.1808, 0.0392);
+    public List<Double> taxes(int range) {
+        if (range == 1) return Arrays.asList(0.445, 0.152, 0.1880, 0.1767, 0.0383);
+        if (range == 2) return Arrays.asList(0.40, 0.152, 0.1980, 0.2055, 0.0445);
+        if (range == 3) return Arrays.asList(0.40, 0.152, 0.2080, 0.1973, 0.0427);
+        if (range == 4) return Arrays.asList(0.40, 0.1920, 0.1780, 0.1890, 0.0410);
+        if (range == 5) return Arrays.asList(0.40, 0.1920, 0.1880, 0.1808, 0.0392);
         return Arrays.asList(0.0, 0.2150, 0.5350, 0.2055, 0.0445);
     }
 
-    @Override
     public List<String> namesTaxes() {
         return Arrays.asList("ISS: ", "CSLL: ", "IRPJ: ", "COFINS: ", "PIS: ");
     }
 
     @Override
-    public double getRevenue() {
-        return revenue - iss;
-    }
-
-    @Override
     public void printFullData() {
-        iss += InputManager.iss();
-        printGuideAndAliquot(sumTaxes(), calculatorAliquot());
+        iss += InputManager.test(InputManager.questionIss());
         printTaxes();
     }
 }

@@ -18,7 +18,7 @@ public interface Annexs {
 
     List<Double> deductionValue();
 
-    List<Double> taxes(int track);
+    List<Double> taxes(int range);
 
     void printFullData();
 
@@ -37,10 +37,6 @@ public interface Annexs {
                 deductionValue().get(checkRange() - 1)) / valueRbt12 * 100;
     }
 
-    default double calculatorValueGuide() {
-        return calculatorAliquot() / 100 * getRevenue();
-    }
-
     default ArrayList<Double> calculationTaxes(List<Double> taxes, double revenue) {
         ArrayList<Double> list = new ArrayList<>();
         for (int i = 0; i < taxes(checkRange()).size(); i++) {
@@ -48,26 +44,5 @@ public interface Annexs {
             list.add(calc);
         }
         return list;
-    }
-
-    default void printGuideAndAliquot(double guide, double aliquot) {
-        System.out.printf("Valor da guia: R$ %.2f%n", guide);
-        System.out.printf("Porcentagem aliquota: %.3f %%%n", aliquot);
-    }
-
-    default double aliquotIcms() {
-        return calculatorAliquot() * taxes(checkRange()).get(0);
-    }
-
-    default double aliquotIss() {
-        return calculatorAliquot() * taxes(checkRange()).get(0);
-    }
-
-    default double aliquotCofins() {
-        return (calculatorAliquot() * taxes(checkRange()).get(1));
-    }
-
-    default double aliquotPis() {
-        return (calculatorAliquot() * taxes(checkRange()).get(2));
     }
 }

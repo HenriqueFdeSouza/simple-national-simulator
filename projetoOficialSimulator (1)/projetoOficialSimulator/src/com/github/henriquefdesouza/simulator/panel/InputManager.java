@@ -36,26 +36,6 @@ public class InputManager {
         return sc.nextLine();
     }
 
-    public static double iss() {
-        if (questionIss().equalsIgnoreCase("sim")) {
-            return readInput("Por favor, inclua o valor correspondente ao ISS Retido");
-        }
-        return 0;
-    }
-
-    public static double pisCofins() {
-        if (questionPisAndCofins().equalsIgnoreCase("sim")) {
-            return readInput("Por favor, inclua o valor correspondente ao Pis e Cofins monofásico");
-        }
-        return 0;
-    }
-
-    public static double icmsSt() {
-        if (questionIcms().equalsIgnoreCase("sim")) {
-            return readInput("Por favor, inclua o valor correspondente ao ICMS Substituição Tributária");
-        }
-        return 0;
-    }
 
     public static double readInput(String prompt) {
         System.out.print(prompt + " : ");
@@ -65,5 +45,12 @@ public class InputManager {
         } catch (ParseException e) {
             throw new RuntimeException("Numero digitado está incorreto!");
         }
+    }
+
+    public static double test(String response) {
+        if (response.equalsIgnoreCase("sim")) {
+            return readInput("Por favor, insira o valor correspondente");
+        }
+        return 0;
     }
 }
