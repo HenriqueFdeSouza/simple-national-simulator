@@ -1,13 +1,12 @@
-package com.github.henriquefdesouza.simulator.annexone;
+package com.github.henriquefdesouza.simulator.annexs;
 
-import com.github.henriquefdesouza.simulator.Annexs;
 import com.github.henriquefdesouza.simulator.panel.InputManager;
 import com.github.henriquefdesouza.simulator.piscofisicms.AllTaxes;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AnnexOne extends AllTaxes implements Annexs {
+public class AnnexOne extends AllTaxes implements Annex {
     public List<Double> aliquot() {
         return Arrays.asList(0.04, 0.073, 0.095, 0.107, 0.143, 0.19);
     }
@@ -28,8 +27,8 @@ public class AnnexOne extends AllTaxes implements Annexs {
 
     @Override
     public void printFullData() {
-        icmsSt += InputManager.test(InputManager.questionIcms());
-        pisCofins += InputManager.test(InputManager.questionPisAndCofins());
+        icmsSt += InputManager.valueTaxe(InputManager.questionIcms());
+        pisCofins += InputManager.valueTaxe(InputManager.questionPisAndCofins());
         printTaxes();
     }
 }

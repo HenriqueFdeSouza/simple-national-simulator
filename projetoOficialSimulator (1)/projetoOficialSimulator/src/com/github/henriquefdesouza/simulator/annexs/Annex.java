@@ -1,11 +1,11 @@
-package com.github.henriquefdesouza.simulator;
+package com.github.henriquefdesouza.simulator.annexs;
 
 import com.github.henriquefdesouza.simulator.panel.InputManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Annexs {
+public interface Annex {
 
     double valueRbt12 = InputManager.rbt12();
     double revenue = InputManager.revenueValue();

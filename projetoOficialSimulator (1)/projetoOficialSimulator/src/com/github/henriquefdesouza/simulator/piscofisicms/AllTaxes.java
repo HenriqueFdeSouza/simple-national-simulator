@@ -1,11 +1,10 @@
 package com.github.henriquefdesouza.simulator.piscofisicms;
 
-import com.github.henriquefdesouza.simulator.Annexs;
-import com.github.henriquefdesouza.simulator.panel.InputManager;
+import com.github.henriquefdesouza.simulator.annexs.Annex;
 
 import java.util.List;
 
-public abstract class AllTaxes implements Annexs {
+public abstract class AllTaxes implements Annex {
     public double icmsSt;
     public double pisCofins;
     public double iss;
@@ -16,20 +15,20 @@ public abstract class AllTaxes implements Annexs {
         return revenue - icmsSt - pisCofins - iss;
     }
 
-    public Double recalculateTaxePisCofins(int i) {
+    private Double recalculateTaxePisCofins(int i) {
         List<Double> listTaxes = taxes(checkRange());
         listTaxes.set(1, 0.0);
         listTaxes.set(2, 0.0);
         return calculationTaxes(listTaxes, pisCofins).get(i);
     }
 
-    public Double recalculateTaxeIcms(int i) {
+    private Double recalculateTaxeIcms(int i) {
         List<Double> listTaxes = taxes(checkRange());
         listTaxes.set(0, 0.0);
         return calculationTaxes(listTaxes, icmsSt).get(i);
     }
 
-    public Double recalculateTaxeIss(int i) {
+    private Double recalculateTaxeIss(int i) {
         List<Double> listTaxes = taxes(checkRange());
         listTaxes.set(0, 0.0);
         return calculationTaxes(listTaxes, iss).get(i);

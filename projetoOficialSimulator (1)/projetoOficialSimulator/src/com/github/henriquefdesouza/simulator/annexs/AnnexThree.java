@@ -1,13 +1,12 @@
-package com.github.henriquefdesouza.simulator.annexthree;
+package com.github.henriquefdesouza.simulator.annexs;
 
-import com.github.henriquefdesouza.simulator.Annexs;
 import com.github.henriquefdesouza.simulator.panel.InputManager;
 import com.github.henriquefdesouza.simulator.piscofisicms.AllTaxes;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class AnnexThree extends AllTaxes implements Annexs {
+public class AnnexThree extends AllTaxes implements Annex {
 
     public List<Double> aliquot() {
         return Arrays.asList(0.06, 0.112, 0.135, 0.16, 0.21, 0.33);
@@ -30,7 +29,7 @@ public class AnnexThree extends AllTaxes implements Annexs {
 
     @Override
     public void printFullData() {
-        iss += InputManager.test(InputManager.questionIss());
+        iss += InputManager.valueTaxe(InputManager.questionIss());
         printTaxes();
     }
 }

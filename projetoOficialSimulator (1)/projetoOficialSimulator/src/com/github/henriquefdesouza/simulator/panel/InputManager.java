@@ -47,7 +47,7 @@ public class InputManager {
         }
     }
 
-    public static double test(String response) {
+    public static double valueTaxe(String response) {
         if (response.equalsIgnoreCase("sim")) {
             return readInput("Por favor, insira o valor correspondente");
         }
